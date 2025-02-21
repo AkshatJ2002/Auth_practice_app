@@ -18,7 +18,15 @@ export const AuthProvider=({children})=>{
 
     const handlelogin=async(email,password)=>{
         try {
+            
             const session=await account.createEmailPasswordSession(email, password);
+            const sessions = await account.listSessions();
+
+        for (let s of sessions.sessions) {
+            if (s.$id !== session.$id) {
+                await account.deleteSession(s.$id);
+            }
+        }
             const userData = await fetchcurrentuser();
             if (userData) {
                 setuser(userData);
