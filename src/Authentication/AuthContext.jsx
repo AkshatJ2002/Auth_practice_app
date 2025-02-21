@@ -21,7 +21,10 @@ export const AuthProvider=({children})=>{
             
             const session=await account.createEmailPasswordSession(email, password);
             const sessions = await account.listSessions();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 830df505f375501eae204eed5142a23ceba5f9ce
         for (let s of sessions.sessions) {
             if (s.$id !== session.$id) {
                 await account.deleteSession(s.$id);
